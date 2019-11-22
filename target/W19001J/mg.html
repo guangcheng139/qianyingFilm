@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>layout 后台大布局 - Layui</title>
+	<link rel="stylesheet" href="layui/css/layui.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<div class="layui-logo layui-bg-gray">千影 后台管理</div>
+			<ul class="layui-nav layui-layout-left">
+				<li class="layui-nav-item"><a href="">控制台</a></li>
+				<li class="layui-nav-item"><a href="">商品管理</a></li>
+				<li class="layui-nav-item"><a href="">用户</a></li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">其它系统</a>
+					<dl class="layui-nav-child">
+						<dd><a href="">邮件管理</a></dd>
+						<dd><a href="">消息管理</a></dd>
+						<dd><a href="">授权管理</a></dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item">
+					<a href="javascript:;">
+						<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+						贤心
+					</a>
+					<dl class="layui-nav-child">
+						<dd><a href="">基本资料</a></dd>
+						<dd><a href="">安全设置</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item"><a href="">退了</a></li>
+			</ul>
+		</div>
+
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+				<ul class="layui-nav layui-nav-tree" lay-filter="test">
+					<li class="layui-nav-item layui-nav-itemed">
+						<a class="" href="javascript:;">所有电影</a>
+					</li>
+					<li class="layui-nav-item"><a href="mgadd.html">新增电影</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+			<div style="padding: 15px;">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>名字</th>
+							<th>译名</th>
+							<th>简介</th>
+							<th>上映日期</th>
+							<th>发布时间</th>
+							<th>产地</th>
+							<th>语言</th>
+							<th>导演</th>
+							<th>演员</th>
+							<th>浏览次数</th>
+							<th>类型</th>
+							<th>编剧</th>
+							<th>编辑</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+
+				<a href="javascript:loadData(1,10)">首页</a>
+				<a href="javascript:go(-1)">上一页</a>
+				<a href="javascript:go(1)">下一页</a>
+				<a href="javascript:go(0)">末页</a>
+				<span id="info2"></span>
+				<!-- 临时保存当前的页面 -->
+				<input type="hidden" id="cpage">
+				<input type="hidden" id="pageSize">
+				<input type="hidden" id="totalPage">
+
+			</div>
+		</div>
+
+
+
+		<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" style="width: 780px; height: 1120px;">
+					<div class="modal-header">
+						<h5 class="modal-title">详情</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div id="selectTree" class="ztree" style="width:780px;overflow:auto; ">
+							</div>
+							<form class="layui-form" action="">
+								<div class="layui-form-item">
+									<label class="layui-form-label">id</label>
+									<div class="layui-input-inline">
+										<input type="text" name="title" required lay-verify="required"
+											placeholder="请输入电影名" autocomplete="off" class="layui-input" id="fid">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">电影名</label>
+									<div class="layui-input-inline">
+										<input type="text" name="title" required lay-verify="required"
+											placeholder="请输入电影名" autocomplete="off" class="layui-input" id="foname">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">译名</label>
+									<div class="layui-input-inline">
+										<input type="text" name="password" required lay-verify="required"
+											placeholder="请输入译名" autocomplete="off" class="layui-input" id="ftname">
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-text">
+									<label class="layui-form-label">类型</label>
+									<div class="layui-input-block">
+										<textarea name="desc" placeholder="请输入类型" class="layui-textarea"
+											id="ftype"></textarea>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">语言</label>
+									<div class="layui-input-inline">
+										<select class="form-control" style="width:180px" id="langue">
+											<option></option>
+											<option>英语</option>
+											<option>中文</option>
+											<option>法语</option>
+											<option>俄语</option>
+											<option>韩语</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">产地</label>
+									<div class="layui-input-inline">
+										<select name="langue" lay-verify="required" id="origin">
+											<option value=""></option>
+											<option value="中国">中国</option>
+											<option value="美国">美国</option>
+											<option value="韩国">韩国</option>
+											<option value="日本">日本</option>
+											<option value="西班牙">西班牙</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">导演</label>
+									<div class="layui-input-inline">
+										<input type="text" name="title" required lay-verify="required"
+											placeholder="请输入导演" autocomplete="off" class="layui-input" id="director">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">次数</label>
+									<div class="layui-input-inline">
+										<input type="text" name="title" required lay-verify="required"
+											placeholder="请输入浏览次数" autocomplete="off" class="layui-input" id="browse">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">编剧</label>
+									<div class="layui-input-inline">
+										<input type="text" name="title" required lay-verify="required"
+											placeholder="请输入编剧" autocomplete="off" class="layui-input" id="writers">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-mid">上映时间</label>
+									<div class="layui-inline">
+										<!-- 注意：这一层元素并不是必须的 -->
+										<input type="text" class="layui-input" id="show">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-mid">发布时间</label>
+									<div class="layui-inline">
+										<!-- 注意：这一层元素并不是必须的 -->
+										<input type="text" class="layui-input" id="publish">
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-text">
+									<label class="layui-form-label">演员</label>
+									<div class="layui-input-block">
+										<textarea name="desc" placeholder="请输入演员" class="layui-textarea"
+											id="actor"></textarea>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-text">
+									<label class="layui-form-label">简介</label>
+									<div class="layui-input-block">
+										<textarea name="desc" placeholder="请输入简介" class="layui-textarea"
+											id="intro"></textarea>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						<button type="button" id="savex" class="btn btn-primary" onclick="update()">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="layui-footer">
+			<!-- 底部固定区域 -->
+			© 千影 - 管理系统
+		</div>
+	</div>
+	<script src="layui/layui.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script>
+		//JavaScript代码区域
+		layui.use('element', function () {
+			var element = layui.element;
+
+		});
+		$(function () {
+			//将jQuery代码放入该函数中				
+			loadData();
+
+		})
+		layui.use('form', function () {
+			var form = layui.form;
+			//监听提交
+			form.on('submit(formDemo)', function (data) {
+				layer.msg(JSON.stringify(data.field));
+				return false;
+			});
+		});
+		layui.use('laydate', function () {
+			var laydate = layui.laydate;
+
+			//执行一个laydate实例
+			laydate.render({
+				elem: '#show' //指定元素
+			});
+		});
+		layui.use('laydate', function () {
+			var laydate = layui.laydate;
+
+			//执行一个laydate实例
+			laydate.render({
+				elem: '#publish' //指定元素
+			});
+		});
+
+		function loadData(page, pageSize) {
+			$.ajax({
+				method: 'get',
+				url: 'Mg',
+				data: {
+					'page': page,
+					'pageSize': pageSize,
+					'type': "query"
+				},
+				success: function (data) {
+					console.log('data', data);
+					$('#info2').html(data.currentPage + '/' + data.totalPage);
+					$('#cpage').val(data.currentPage);
+					$('#pageSize').val(data.pageSize);
+					$('#totalPage').val(data.totalPage);
+					//data表示服务器返回的JSON数据						
+					//遍历data		
+					let trs = '';
+					$.each(data.data, function (i, v) {
+						trs += `
+						<tr>
+						<td>${v.fid}</td>
+						<td>${v.foname}</td>
+						<td>${v.ftname}</td>
+						<td>${v.intro}</td>		
+						<td>${v.show}</td>
+						<td>${v.publish}</td>
+						<td>${v.origin}</td>
+						<td>${v.langue}</td>
+						<td>${v.director}</td>
+						<td>${v.actor}</td>
+						<td>${v.browse}</td>
+						<td>${v.ftype}</td>
+						<td>${v.writers}</td>
+						<td>
+                          <button class="btn btn-primary btn-sm "data-toggle="modal" data-target="#modelId" onclick="filldata('${v.fid}','${v.foname}','${v.ftname}','${v.intro}','${v.show}','${v.publish}','${v.origin}','${v.langue}','${v.director}','${v.actor}','${v.browse}','${v.ftype}','${v.writers}')">编辑</button>
+						  <button class="btn btn-primary btn-sm" onclick="show('${v.fid}')">删除</button>
+						</td>
+					</tr>
+					`
+					});
+					$('tbody').html(trs);
+				},
+				dataType: 'json'
+			});
+		}
+		function go(page) {
+			let cpage = $('#cpage').val();//当前页
+			let pageSize = $('#pageSize').val();//每页显示记录数
+			let tpage = $('#totalPage').val();//当前页
+
+			if (page == 0) {
+				//默认为最大页
+				p = Number(tpage);
+			} else if (page < 0) {
+				p = Number(cpage) - 1;
+			} else if (page > 0) {
+				p = Number(cpage) + 1;
+			}
+			if (p < 0) {
+				p = 1;
+			}
+			if (p > Number(tpage)) {
+				p = Number(tpage);
+			}
+
+			loadData(p, pageSize);
+		}
+		function del(fid) {
+			//执行删除
+			$.post('Mg', 'type=del&fid=' + fid, function (data) {
+				if (data == '1') {
+					//删除成功后重新加载页面数据
+					loadData();
+					layer.msg('删除成功!');
+				} else {
+					layer.msg('删除失败!');
+				}
+			}, 'text');
+		}
+		function filldata(fid, foname, ftname, intro, show, publish, origin, langue, director, actor, browse, ftype, writers) {
+			$('#fid').val(fid);
+			$('#foname').val(foname);
+			$('#ftname').val(ftname);
+			$('#intro').val(intro);
+			$('#show').val(show);
+			$('#publish').val(publish);
+			$('#director').val(director);
+			$('#actor').val(actor);
+			$('#browse').val(browse);
+			$('#ftype').val(ftype);
+			$('#writers').val(writers);
+			//遍历所有的元素节点
+			$('#langue option').each(function (i) {
+				//$(this) 表示当前遍历到的对象
+				if ($(this).text() == langue) {
+					//添加selected属性,使之处于选中状态
+					$(this).attr('selected', 'selected');
+					return;
+				}
+			});
+			$('#origin option').each(function (i) {
+				//$(this) 表示当前遍历到的对象
+				if ($(this).val() == origin) {
+					//添加selected属性,使之处于选中状态
+					$(this).attr('selected', 'selected');
+					return;
+				}
+			});
+		}
+		function update() {
+			let fid = $('#fid').val();
+			let foname = $('#foname').val();
+			let ftname = $('#ftname').val();
+			let type_value = $('#ftype').val();
+			let langue = $('#langue option:selected').val();
+			let origin = $('#origin option:selected').val();
+			let director = $('#director').val();
+			let browse = $('#browse').val();
+			let writers = $('#writers').val();
+			let show = $('#show').val();
+			let publish = $('#publish').val();
+			let actor = $('#actor').val();
+			let intro = $('#intro').val();
+			$.ajax({
+				method: 'post',
+				url: 'Mg',
+				data: {
+					'type': "update",
+					'fid': fid,
+					'foname': foname,
+					'ftname': ftname,
+					'type_value': type_value,
+					'langue': langue,
+					'origin': origin,
+					'director': director,
+					'browse': browse,
+					'writers': writers,
+					'show': show,
+					'publish': publish,
+					'actor': actor,
+					'intro': intro
+				},
+				success: function (data) {
+					if (data == "1") {
+						layer.msg('修改成功');
+						loadData();
+					} else {
+						layer.msg('修改失败！');
+					}
+				},
+				dataType: 'json'
+			});
+
+		}
+		function show(fid) {
+			layer.confirm('确定删除?', { icon: 3, title: '是的' }, function (index) {
+				del(fid);
+				layer.close(index);
+			});
+
+		}
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+
+</html>

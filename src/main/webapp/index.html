@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>上传</title>
+</head>
+
+<body>
+	<script type="text/javascript" src="static/js/jquery.js"></script>
+	<script type="text/javascript" src="static/js/bootstrap.js"></script>
+	<script type="text/javascript" src="static/js/slick.min.js"></script>
+	<script type="text/javascript" src="static/js/lib.js"></script>
+	<script type="text/javascript"
+		src="static/js/jquery.xdomainrequest.min.js"></script>
+	<!-- <form id="form1" action="pic" method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="photo">照片</label>
+			<!--这里面name为photo，在servlet中getPart方法来识别.-->
+	<!-- <input type="file" class="form-control-file" name="photo" id="photo" placeholder="请上传照片"> <small id="fileHelpId"
+		class="form-text text-muted">请上传20X20大小的照片</small>
+	</div>
+	<input type="hidden" value="save" name="type">
+	<button type="submit" name="save" id="btn" class="btn btn-primary btn-lg btn-block">保存</button>
+
+	</form> -->
+
+	<input type="file" class="form-control-file" name="photo" id="photo"
+		placeholder="请上传照片">
+	<input type="hidden" value="save" name="type" id="type">
+	<button type="button" name="save" id="btn"
+		class="btn btn-primary btn-lg btn-block" onclick="add()">保存</button>
+
+	<script>
+		function add() {
+			
+			// 新建formdata对象
+			var form = new FormData();
+			// 添加photo的file资源，第一个file为$("#photo")[0].files[0]，第二个file为$("#photo")[1].files[1]
+			form.append('photo', $("#photo")[0].files[0]);
+			// 添加其他发送的数据
+			form.append("type", $("#type").val());
+			$.ajax({
+				type : "POST",
+				url : "pic",
+				data : form,
+				contentType : false,
+				processData : false,
+				success : function(data) {
+					if (data == "1") {
+						alert("提交成功");
+					} else {
+						alert("提交成功");
+					}
+				}
+			});
+		}
+	</script>
+
+</body>
+
+</html>

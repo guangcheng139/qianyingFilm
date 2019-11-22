@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- namespace:命名空间，该值与接口保持一致 -->
+<mapper namespace="com.yanglei.dao.IFilmDao">
+	<!-- 开启二级缓存，默认情况下没有有开启的 -->
+	<!-- 定义Pojo类属性与数据表字段对应关系 -->
+	<resultMap type="com.yanglei.trueclass.Film" id="FilmMap">
+		<id property="fid" column="F_ID" />
+		<result property="foname" column="F_ONAME" />
+		<result property="ftname" column="F_TNAME" />
+		<result property="intro" column="INTRO" />
+		<result property="show" column="SHOW" />
+		<result property="publish" column="PUBLISH" />
+		<result property="origin" column="ORIGIN" />
+		<result property="langue" column="LANGUE" />
+		<result property="director" column="DIRECTOR" />
+		<result property="actor" column="ACTOR" />
+		<result property="browse" column="BROWSE" />
+		<result property="ftype" column="FTYPE" />
+		<result property="writers" column="WRITERS" />
+
+		<!-- 配置关联关系：多对一关系 -->
+		<association property="res"
+			javaType="com.yanglei.trueclass.Res">
+			<id property="rid" column="BROWSE" />
+			<result property="link" column="LINK" />
+		</association>
+		
+		<association property="picture"
+			javaType="com.yanglei.trueclass.Picture">
+			<id property="fid" column="I_ID" />
+			<result property="fname" column="I_NAME" />
+			<result property="realUrl" column="BIMG" />
+		</association>
+	</resultMap>
+	<resultMap type="com.yanglei.trueclass.User" id="UserMap">
+	    <id property="u_id" column="U_ID" />
+	    <result property="u_name" column="U_NAME" />
+	    <result property="password" column="PASSWORD" />
+	    <result property="regdate" column="REGDATE" />
+	</resultMap>
+
+
+
+
+	<!-- id:DAO接口中的方法 -->
+	<insert id="add" parameterType="com.yanglei.trueclass.Film">
+		insert into
+		movie.film(f_oname,f_tname,intro,`show`,publish,origin,langue,director,actor,browse,ftype,writers)
+		values(#{foname},#{ftname},#{intro},#{show_},#{publish_},#{origin},#{langue},#{director},#{actor},#{browse},#{ftype},#{writers})
+	</insert>
+
+	<update id="update" parameterType="com.yanglei.trueclass.Film">
+		update movie.film 
+		<set>
+            <if test="foname != null">f_oname=#{foname},</if>
+            <if test="ftname != null">f_tname=#{ftname},</if>
+            <if test="intro != null">intro=#{intro},</if>
+            <if test="show != null">`show`=#{show_},</if>
+            <if test="publish != null">publish=#{publish_},</if>
+            <if test="origin != null">origin=#{origin},</if>
+            <if test="langue != null">langue=#{langue},</if>
+            <if test="director != null">director=#{director},</if>
+            <if test="actor != null">actor=#{actor},</if>
+            <if test="browse != null">browse=#{browse},</if>
+            <if test="ftype != null">ftype=#{ftype},</if>
+            <if test="writers != null">writers=#{writers}</if>
+        </set>
+        where f_id=#{fid}
+	</update>
+
+	<delete id="del" parameterType="java.lang.Integer">
+		delete from movie.film where
+		f_id=#{fid}
+	</delete>
+
+	<select id="query" resultMap="FilmMap" parameterType="com.yanglei.trueclass.Search">
+		SELECT a.F_ID,a.F_ONAME,a.F_TNAME,a.INTRO,a.SHOW,a.PUBLISH,a.ORIGIN,a.LANGUE,a.DIRECTOR,a.ACTOR,a.BROWSE,a.FTYPE,a.WRITERS,b.I_NAME,b.BIMG,c.LINK FROM MOVIE.FILM a LEFT JOIN MOVIE.IMAGE b ON a.BROWSE=b.I_ID LEFT JOIN MOVIE.RESOURCE c ON a.BROWSE=c.F_ID LIMIT #{start},#{pageSize}
+	</select>
+	
+	<select id="queryuser" resultMap="UserMap">
+	    SELECT U_ID,U_NAME,PASSWORD,REGDATE FROM MOVIE.USER
+	</select>
+	
+	<select id="queryById" resultMap="FilmMap" parameterType="java.lang.Integer">
+		SELECT a.F_ID,a.F_ONAME,a.F_TNAME,a.INTRO,a.SHOW,a.PUBLISH,a.ORIGIN,a.LANGUE,a.DIRECTOR,a.ACTOR,a.BROWSE,a.FTYPE,a.WRITERS,b.I_NAME,b.BIMG,c.LINK FROM MOVIE.FILM a LEFT JOIN MOVIE.IMAGE b ON a.BROWSE=b.I_ID LEFT JOIN MOVIE.RESOURCE c ON a.BROWSE=c.F_ID WHERE a.F_ID=#{fid_};
+	</select>
+	
+	<select id="queryplus" resultMap="FilmMap" parameterType="com.yanglei.trueclass.Search">
+		SELECT a.F_ID,a.F_ONAME,a.F_TNAME,a.INTRO,a.SHOW,a.PUBLISH,a.ORIGIN,a.LANGUE,a.DIRECTOR,a.ACTOR,a.BROWSE,a.FTYPE,a.WRITERS,b.I_NAME,b.BIMG,c.LINK FROM MOVIE.FILM a LEFT JOIN MOVIE.IMAGE b ON a.BROWSE=b.I_ID LEFT JOIN MOVIE.RESOURCE c ON a.BROWSE=c.F_ID WHERE a.FTYPE LIKE #{search} LIMIT #{start},#{pageSize}
+	</select>
+	
+	<select id="querytt" resultType="int">
+		SELECT COUNT(1) FROM MOVIE.FILM a
+	</select>
+	
+	<select id="queryty" resultType="int" parameterType="com.yanglei.trueclass.Search">
+		SELECT COUNT(1) FROM MOVIE.FILM a LEFT JOIN MOVIE.IMAGE b ON a.BROWSE=b.I_ID LEFT JOIN MOVIE.RESOURCE c ON a.BROWSE=c.F_ID WHERE a.FTYPE LIKE #{search}
+	</select>
+	
+	<select id="querymore" resultMap="FilmMap" parameterType="com.yanglei.trueclass.Search">
+		SELECT a.F_ID,a.F_ONAME,a.F_TNAME,a.INTRO,a.SHOW,a.PUBLISH,a.ORIGIN,a.LANGUE,a.DIRECTOR,a.ACTOR,a.BROWSE,a.FTYPE,a.WRITERS,b.I_NAME,b.BIMG,c.LINK FROM MOVIE.FILM a LEFT JOIN MOVIE.IMAGE b ON a.BROWSE=b.I_ID LEFT JOIN MOVIE.RESOURCE c ON a.BROWSE=c.F_ID WHERE a.FTYPE LIKE #{search} OR a.F_ONAME LIKE #{search} OR a.F_TNAME LIKE #{search} OR a.DIRECTOR LIKE #{search} OR a.WRITERS LIKE #{search} OR a.ACTOR LIKE #{search} LIMIT #{start},#{pageSize}
+	</select>
+	
+	<select id="querymorett" resultType="int" parameterType="com.yanglei.trueclass.Search">
+		SELECT COUNT(1) FROM MOVIE.FILM a LEFT JOIN MOVIE.IMAGE b ON a.BROWSE=b.I_ID LEFT JOIN MOVIE.RESOURCE c ON a.BROWSE=c.F_ID WHERE a.FTYPE LIKE #{search} OR a.F_ONAME LIKE #{search} OR a.F_TNAME LIKE #{search} OR a.DIRECTOR LIKE #{search} OR a.WRITERS LIKE #{search} OR a.ACTOR LIKE #{search} LIMIT #{start},#{pageSize}
+	</select>
+	
+	<insert id="addpic" parameterType="com.yanglei.trueclass.Picture">
+		insert into
+		movie.image(i_id,i_name,bimg)
+		values(#{fid},#{fname},#{realUrl})
+	</insert>
+	
+	<insert id="addres" parameterType="com.yanglei.trueclass.Film">
+		insert into
+		movie.resource(f_id,link)
+		values(#{res.rid},#{res.link})
+	</insert>
+	
+	<insert id="addu" parameterType="com.yanglei.trueclass.User">
+		insert into
+		movie.user(u_name,password,regdate)
+		values(#{u_name},#{password},#{regdate})
+	</insert>
+
+</mapper>

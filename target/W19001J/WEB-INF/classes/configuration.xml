@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "http://mybatis.org/dtd/mybatis-3-config.dtd" "resource/mybatis-3-config.dtd" >
+<configuration>
+	<!--  
+	<typeAliases>
+		<typeAlias type="com.newer.emp.pojo.Emp" alias="Emp"/>
+	</typeAliases>
+	-->
+	
+	<!-- 定义环境 -->
+	<environments default="mysql">
+		
+		<environment id="oracle">
+			<transactionManager type="JDBC"/>
+			<!-- 数据源方式,可选值：UNPOOLED、POOLED、JNDI -->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+				<property name="username" value="scott"/>
+				<property name="password" value="password"/>
+				<!-- 最大的连接数 -->
+				<property name="poolMaximumActiveConnections" value="100"/>
+			</dataSource>
+		</environment>
+		<!-- mysql -->
+		<environment id="mysql">
+			<transactionManager type="JDBC"/>
+			<!-- 数据源方式,可选值：UNPOOLED、POOLED、JNDI -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&amp;characterEncoding=UTF-8"/>
+				<property name="username" value="root"/>
+				<property name="password" value="wan123456"/>
+				<!-- 最大的连接数 -->
+				<property name="poolMaximumActiveConnections" value="100"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 定义映射文件 -->
+	<mappers>
+		<mapper resource="EmpMapper.xml"/>
+		<!-- 注解 -->
+		<!--
+		<mapper class="com.yanglei.dao.IFilmDao"/>
+		-->
+	</mappers>
+</configuration>

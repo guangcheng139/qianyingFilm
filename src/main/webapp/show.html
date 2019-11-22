@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图片显示</title>
+<style>
+div {
+	overflow: hidden;
+}
+
+div img {
+	width: 100%;
+	/*占满外面的div整个。*/
+	height: 100%;
+	cursor: pointer;
+	/*cursor:hand 与 cursor:pointer 的效果是一样，都像手形光标。*/
+	transition: all 0.9s;
+	-moz-transition: all 0.9s;
+	/* 0.6s完成过渡效果 */
+	-webkit-transition: all 0.9s;
+}
+
+div img:hover {
+	transform: scale(1.05);
+	/* 放大1.2倍 */
+}
+</style>
+</head>
+<body>
+
+	<div class="picture1" style="width: 90px; height: 150px;">
+		<img src="images/24fcb9c2-0588-4c84-8272-37023f829cd7.jpg" alt="10">
+	
+	</div>
+
+</body>
+</html>

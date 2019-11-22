@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 每种电影类型片头提示 如：动作就是动作片。-->
+    <title>千影资源网_千影迅雷电影下载网_最新电影_迅雷免费电影下载</title>
+    <meta name="keywords" content="电影下载,最新电影,电影天堂,电影网,高清电影下载,电影网站">
+    <meta name="description" content="千影电影网－最新电影-每天搜集最新迅雷免费电影下载。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/xx.PNG" media="screen">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/lib.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/less.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header visible-xs-block">
+        <div class="wp">
+            <div class="logo">
+                <a href="javascript:;"><img src="static/picture/logo.PNG" alt="飘花资源网"></a>
+            </div>
+            <div class="right">
+                <div class="hd-top">
+                    <a href="javascript:;">最新发布资源</a>
+                    <a href="javascript:;">最火电影资源</a>
+                </div>
+                <div class="so" id="pc_so">
+                    <form id="form1" name="formsearch" action="/plus/search.php" target="_blank">
+                        <input name="kwtype" type="hidden" value="0">
+                        <input name="keyword" type="text" id="search-keyword" placeholder="直接输入电影的关键词..." class="inp"
+                            onfocus="if(this.value=='直接输入电影的关键词...'){this.value='';}"
+                            onblur="if(this.value==''){this.value='直接输入电影的关键词...';}">
+                        <input name="searchtype" type="button" value="影视搜索" class="sub" onclick="search()">
+                    </form>
+                </div>
+
+            </div>
+            <span class="menuBtn"></span>
+        </div>
+    </div>
+    <!-- 头部 end-->
+    <div class="nav">
+        <div class="wp">
+            <div class="so" id="mobile_so">
+                <form id="form1" name="formsearch" action="/plus/search.php" target="_blank">
+                    <input name="kwtype" type="hidden" value="0">
+                    <input name="keyword" type="text" id="search-keyword" placeholder="直接输入电影的关键词..." class="inp"
+                        onfocus="if(this.value=='直接输入电影的关键词...'){this.value='';}"
+                        onblur="if(this.value==''){this.value='直接输入电影的关键词...';}">
+                    <input name="searchtype" type="submit" value="影视搜索" class="sub">
+                </form>
+            </div>
+            <ul>
+                <li><a href="home.html">千影首页</a></li>
+                <li><a href="dongzuo.html">动作片</a></li>
+                <li><a href="xiju.html">喜剧片</a></li>
+                <li><a href="love.html">爱情片</a></li>
+                <li><a href="kehuan.html">科幻片</a></li>
+                <li><a href="juqing.html">剧情片</a></li>
+                <li><a href="xuanyi.html">悬疑片</a></li>
+                <li><a href="zhanzheng.html">战争片</a></li>
+                <li><a href="kongbu.html">恐怖片</a></li>
+                <li><a href="zainan.html">灾难片</a></li>
+                <li><a href="lianxuju.html">连续剧</a></li>
+                <li><a href="#">动漫</a></li>
+                <li><a href="zongyi.html">综艺片</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="main">
+        <div class="wp">
+            <div class="m-list1 row">
+                <div class="col-md-3">
+                    <div class="snav">
+                        <h3>动作片下载排行</h3>
+                        <ul id="xtop">
+                            <!-- 这里对span进行动态添加内容 -->
+
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="m-film">
+                        <div class="cur">
+                            当前位置：<a href='home.html'>千影电影</a>><a href='#'>动漫片</a>>>迅雷电影列表
+                        </div>
+                        <ul class="ul-imgtxt2 row" id="xxx">
+
+
+                        </ul>
+                        <!-- 页码 -->
+                        <div class="pages">
+                            <ul>
+                                <input type="hidden" id="currentPage">
+                                <input type="hidden" id="totalPage">
+                                <input type="hidden" id="pageSize">
+                                <li class='first'><a href='javascript:loadData(1,12)'>首页</a></li>
+                                <li class='pages-previous'><a href='javascript:go(8)'>上一页</a></li>
+                                <li class='pages-next'><a href='javascript:go(-8)'>下一页</a></li>
+                                <li class='end'><a href='javascript:go(0)'>末页</a></li>
+                                <li class='total'>当前第<span id="onpage"></span>页</li>
+                            </ul>
+                        </div>
+                        <!-- 页码 end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主内容 end-->
+
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="wp">
+            <p>2009-2019 千影免费 <a href="home.html">电影下载站</a>All Rights Reserved <a href="">电影下载网站 免费</a>千影网
+            </p>
+            <p><a href="">下载电影</a>千影电影网，本站资源均为网络免费资源搜索机器人自动搜索的结果，本站只提供 <a href="">最新电影下载</a>，并不存放任何资源。</p>
+            <p>所有视频版权归原权利人，将于24小时内删除！我们强烈建议所有影视爱好者购买正版音像制品！</p>
+            <p>本站拒绝一切非法，淫秽电影，欢迎大家监督 有问题可联系管理员</p>
+        </div>
+    </div>
+    <!-- 底部 end-->
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="static/js/slick.min.js"></script>
+    <script type="text/javascript" src="static/js/lib.js"></script>
+    <script type="text/javascript" src="static/js/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="static/js/fcdelect.js"></script>
+    <script type="text/javascript" src="static/js/protocolcheck.js"></script>
+
+    <script>
+        $(function () {
+
+            //将jQuery代码放入该函数中				
+            loadData();
+            loadTop();
+        })
+        /**
+        * 用于加载服务器返回的JSON数据
+        */
+        function loadData(page, pageSize) {
+
+
+            //使用AJAX发送请求
+            $.ajax({
+                method: 'get',
+                url: 'Mg',
+                // 根据片种进行分类加载,"动漫"动漫片种
+                data: { "ftype": "动漫", "page": page, "pageSize": pageSize,'type':"queryplus"},
+                success: function (data) {
+                    $('#onpage').html(data.currentPage + '/' + data.totalPage);
+                    $('#currentPage').val(data.currentPage);
+                    $("#totalPage").val(data.totalPage);
+                    $("#pageSize").val(data.pageSize);
+
+                    //data表示服务器返回的JSON数据						
+
+                    //遍历data					
+                    let trs = '';
+                    $.each(data.data, function (i, v) {
+
+                        trs += `
+                        <li class="col-md-6">
+                                <div class="pic"><a href="single1.html?fid=${v.fid}"><img src=${v.picture.realUrl}
+                                            alt="<b><font color='#FF0000'>${v.foname}</font></b>"></a></div>
+                                <div class="txt">
+                                    <h3><a href="single1.html?fid=${v.fid}"><b>
+                                                <font color='#FF0000'>${v.foname}</font>
+                                            </b><em>BD1280高清</em></a></h3>
+                                    <p>◎译 名 ${v.ftname} ◎片 名 ${v.foname} ◎年 代 ${v.show} ◎产 地 ${v.origin} ◎类 别 ${v.ftype} ◎语 言 ${v.langue}
+                                        ◎上映 ${v.public}</p>
+                                    <span>
+                                        更新时间：<font color='red'>${v.publish}(今日推荐)</font>
+                                        <a href="single1.html?fid=${v.fid}">点击下载</a></span>
+                                </div>
+                            </li>
+						`
+                    });
+
+                    $('#xxx').html(trs);
+
+                },
+                dataType: 'json'
+            });
+
+        }
+        // 分页
+        function go(page) {
+
+            let currentPage = $('#currentPage').val();
+            let pageSize = $("#pageSize").val();
+            let totalPage = $("#totalPage").val();
+
+            if (page == 0) {
+                // page值为0为末页
+                p = Number(totalPage);
+            } else if (page > 0) {
+                // page值大于0为上一页
+                p = Number(currentPage) - 1;
+            } else if (page < 0) {
+                // page值小于0为下一页
+                p = Number(currentPage) + 1;
+            }
+
+            // p为跳转页面的值，最后判断一下p需要在(1,totalPage)这个范围里
+            if (p <= 0) {
+                p = 1;
+            }
+
+            if (p >= Number(totalPage)) {
+                p = Number(totalPage);
+            }
+
+            loadData(p, pageSize);
+
+        }
+
+
+        function loadTop() {
+
+
+            //使用AJAX发送请求
+            $.ajax({
+                method: 'get',
+                url: 'fftype',
+                data: {},
+                success: function (data) {
+
+                    //data表示服务器返回的JSON数据						
+
+                    //遍历data					
+                    let trs = '';
+                    $.each(data.data, function (i, v) {
+
+                        trs += `
+                        <li>
+                                <a href="single1.html?fid=${v.fid}">
+                                    <span>${i + 1}</span>
+                                    <h4>
+                                        <font color='#FF0000'>${v.foname}</font><em>BD1280高清</em>（动漫片）
+                                    </h4>
+                                </a>
+                            </li>
+						`
+                    });
+
+                    $('#xtop').html(trs);
+
+                },
+                dataType: 'json'
+            });
+
+        }
+
+        function search() {
+            var keyword = $("#search-keyword").val();
+            if (keyword != null) {
+                window.open("query.html" + "?search=" + encodeURI(keyword));
+            }
+        }
+
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#banner .slider').slick({
+                dots: true,
+                arrows: true,
+                autoplay: true,
+                slidesToShow: 1,
+                autoplaySpeed: 5000,
+                pauseOnHover: false,
+                lazyLoad: 'ondemand'
+            });
+        });
+    </script>
+    <div style="display:none">
+        <script language="javascript" src="static/js/tj-921.js"></script>
+    </div>
+</body>
+
+</html>

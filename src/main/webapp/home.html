@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>千影资源网_千影迅雷电影下载网_最新电影_迅雷免费电影下载</title>
+    <meta name="keywords" content="电影下载,最新电影,电影天堂,电影网,高清电影下载,电影网站">
+    <meta name="description" content="千影电影网－最新电影-每天搜集最新迅雷免费电影下载。">
+    <meta name="wap-font-scale" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 浏览器上面的小图标显示 -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/xx.PNG" media="screen">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/lib.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/less.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header visible-xs-block">
+        <div class="wp">
+            <div class="logo">
+                <a href=""><img src="static/picture/logo.PNG" alt="千影资源网"></a>
+            </div>
+            <div class="right">
+                <div class="hd-top">
+                    <a href="ind.html">注册/登录</a>
+                    
+                </div>
+                <div class="so" id="pc_so" style="position: relative;top: 5px;">
+                    <form id="form1" name="formsearch" action="/plus/search.php" target="_blank">
+                        <input name="kwtype" type="hidden" value="0">
+                        <input name="keyword" type="text" id="search-keyword" placeholder="直接输入电影的关键词..." class="inp"
+                            onfocus="if(this.value=='直接输入电影的关键词...'){this.value='';}"
+                            onblur="if(this.value==''){this.value='直接输入电影的关键词...';}">
+                            <!-- 更改提交方式，把它改为button用ajax提交 -->
+                        <input name="searchtype" type="button" value="影视搜索" class="sub" onclick="search()">
+                    </form>
+                </div>
+                <!-- <div class="bot">
+                    <a href="">最新电影下载</a>
+                    就上飘花网 www.piaohua.com
+                </div> -->
+            </div>
+            <span class="menuBtn"></span>
+        </div>
+    </div>
+    <!-- 头部 end-->
+    <div class="nav">
+        <div class="wp">
+            <div class="so" id="mobile_so">
+                <form id="form1" name="formsearch" action="/plus/search.php" target="_blank">
+                    <input name="kwtype" type="hidden" value="0">
+                    <input name="keyword" type="text" id="search-keyword" placeholder="直接输入电影的关键词..." class="inp"
+                        onfocus="if(this.value=='直接输入电影的关键词...'){this.value='';}"
+                        onblur="if(this.value==''){this.value='直接输入电影的关键词...';}">
+                    <input name="searchtype" type="submit" value="影视搜索" class="sub">
+                </form>
+            </div>
+            <ul>
+                    <li><a href="#">千影首页</a></li>
+                    <li><a href="dongzuo.html">动作片</a></li>
+                    <li><a href="xiju.html">喜剧片</a></li>
+                    <li><a href="love.html">爱情片</a></li>
+                    <li><a href="kehuan.html">科幻片</a></li>
+                    <li><a href="juqing.html">剧情片</a></li>
+                    <li><a href="xuanyi.html">悬疑片</a></li>
+                    <li><a href="zhanzheng.html">战争片</a></li>
+                    <li><a href="kongbu.html">恐怖片</a></li>
+                    <li><a href="zainan.html">灾难片</a></li>
+                    <li><a href="lianxuju.html">连续剧</a></li>
+                    <li><a href="dongman.html">动漫</a></li>
+                    <li><a href="zongyi.html">综艺片</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 主内容 -->
+    <div class="main">
+        <div class="wp">
+            <div class="container">
+                <div class="m-recom">
+                    <div class="g-tit1">
+                        <a href="javascript:;" target="_blank">更多..</a>
+                        <h3>最新发布资源推荐</h3>
+                    </div>
+                    <ul class="ul-imgtxt1 row" id="xxx">
+                        
+                    </ul>
+                </div>
+
+                <div class="m-link" style="text-align: center;">
+                    <span class="tit">友情连接</span>
+                    <div class="txt">
+                        <div class="link">
+
+                            <a href="javascript:;" target="_blank">电影天堂</a>
+                            <a href="javascript:;" target="_blank">剧情介绍</a>
+
+
+                            <a href="javascript:;" target="_blank">TXT小说</a>
+                            <a href="javascript:;" target="_blank">百度影音</a>
+                        </div>
+                        <p><span>权重大于7的</span><span>欢迎友链</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主内容 end-->
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="wp">
+            <p>2006-2010 千影免费 <a href="">电影下载站</a>All Rights Reserved <a href="">电影下载网站 免费</a>千影网
+            </p>
+            <p><a href="">下载电影</a>千影电影网，本站资源均为网络免费资源搜索机器人自动搜索的结果，本站只提供 <a href="">最新电影下载</a>，并不存放任何资源。</p>
+            <p>所有视频版权归原权利人，将于24小时内删除！我们强烈建议所有影视爱好者购买正版音像制品！</p>
+            <p>本站拒绝一切非法，淫秽电影，欢迎大家监督 有问题可联系管理员</p>
+        </div>
+    </div>
+    <!-- 底部 end-->
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="static/js/slick.min.js"></script>
+    <script type="text/javascript" src="static/js/lib.js"></script>
+    <script type="text/javascript" src="static/js/jquery.xdomainrequest.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#banner .slider').slick({
+                dots: true,
+                arrows: true,
+                autoplay: true,
+                slidesToShow: 1,
+                autoplaySpeed: 5000,
+                pauseOnHover: false,
+                lazyLoad: 'ondemand'
+            });
+        });
+    </script>
+    <div style="display:none">
+        <script language="javascript" src="static/js/tj-0921.js"></script>
+    </div>
+    <script>
+        // 动态加载影片信息，但动态加载如何不覆盖之前的页面需要解决。直接用追加就好。
+        //	直接是$("#id").append(trs);这是追加元素不覆盖之前的页面。
+        $(function () {
+        	
+            //将jQuery代码放入该函数中				
+            loadData();
+           /*  session(); */
+
+        })
+        /**
+        * 用于加载服务器返回的JSON数据
+        */
+        function loadData() {
+
+            
+        	
+
+            //使用AJAX发送请求
+            $.ajax({
+                method: 'get',
+                url: 'Mg',
+                async:false,
+                data:{'type':"query"},
+                success: function (data) {
+
+                    //data表示服务器返回的JSON数据						
+
+                    //遍历data					
+                    let trs = '';
+                    $.each(data.data, function (i, v) {
+                    	
+                        trs += `
+                            <li class="col-sm-4 col-md-3 col-lg-2">
+                            <a href="single1.html?fid=${v.fid}">
+                                <div class="pic"><img src=${v.picture.realUrl}
+                                        alt="<font color='#FF0000'>${v.foname}</font>"></div>
+                                <div class="txt">
+                                    <h3>
+                                        <font color='#FF0000'>${v.foname}</font>BD1280高清
+                                    </h3>
+                                    <span>${v.publish}</span>
+                                </div>
+                            </a>
+                        </li>
+						`
+                    });
+
+                    $('#xxx').html(trs);
+
+                },
+                dataType: 'json'
+            });
+
+        }
+        
+       /* 获取后端传来的session值*/
+       /*  function session(){
+    	   	alert("hh");
+        	$.get("Mg",{type:"sess"},function(data){
+        		alert(data);
+        	})
+        } */
+        
+        
+
+   
+
+        
+        //对于查询输入框结果返回数据。需要跳转页面进行加载查询的数据，还获取不到页面的值。
+        // url地址传参数
+        // https://blog.csdn.net/tammy_min/article/details/18310249
+         function search(){
+            var keyword = $("#search-keyword").val();
+            if(keyword!=null){
+               window.open("query.html"+"?search="+encodeURI(keyword));
+            }
+        }
+    </script>
+</body>
+
+</html>

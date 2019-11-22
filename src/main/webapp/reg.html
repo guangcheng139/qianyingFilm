@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+
+  <title>千影网注册</title>
+  <meta name="author" content="DeathGhost">
+  <link rel="shortcut icon" type="image/x-icon" href="images/xx.PNG" media="screen">
+  <link rel="stylesheet" type="text/css" href="css/style2.css" tppabs="css/style.css">
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <style>
+    body {
+      height: 100%;
+      background: #106492;
+      overflow: hidden;
+    }
+
+    canvas {
+      z-index: -1;
+      position: absolute;
+    }
+  </style>
+  <script src="layui/layui.all.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/verificationNumbers.js" tppabs="js/verificationNumbers.js"></script>
+  <script src="js/Particleground.js" tppabs="js/Particleground.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      //粒子背景特效
+      $('body').particleground({
+        dotColor: '#5cbdaa',
+        lineColor: '#5cbdaa'
+      });
+      //验证码
+      createCode();
+
+
+
+      //测试提交，对接程序删除即可
+      // $(".submit_btn").click(function(){
+      //   //location.href="javascrpt:;"/*tpa=http://***index.html*/;
+      //   });
+    });
+  </script>
+</head>
+
+<body>
+  <dl class="admin_login">
+    <dt>
+      <strong>千影网</strong>
+      <em>Cheerful movie</em>
+    </dt>
+    <dd class="user_icon">
+      <input type="text" placeholder="账号" id="h123" class="login_txtbx">
+    </dd>
+    <dd class="pwd_icon">
+      <input type="password" placeholder="密码" id="u123" class="login_txtbx">
+    </dd>
+    <dd class="pwd_icon">
+        <input type="password" placeholder="再次确认密码" id="v123" class="login_txtbx">
+      </dd>
+    <dd class="val_icon">
+      <div class="checkcode">
+        <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+        <canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+      </div>
+      <input type="button" value="验证码核验" class="ver_btn" onclick="validate();">
+    </dd>
+    <dd>
+      <input id="j123" type="button" value="立即注册" class="submit_btn" onclick="den()">
+    </dd>
+    <dd>
+      <p>千影网 版权所有</p>
+      <p>客服：18888888888</p>
+    </dd>
+  </dl>
+  <script>
+    
+
+    function den() {
+      var uname = $("#h123").val();
+      
+      var password = $("#u123").val();
+     
+     var c=$("#v123").val();
+      
+      if (validate()=="1") {
+        if(c==password){
+          $.ajax({
+          method: 'post',
+          url: 'Mg',
+          data: { 'uname': uname, 'password': password, "type":"register"},
+          //返回提示
+          success: function (data) {
+            if (data == "1") {
+            	layer.msg("注册成功");
+              //登录页面
+              location.href='ind.html';
+            } else {
+            	layer.msg("注册失败");
+            }
+
+          },
+          // error:function(m,n,x){
+          //   alert(m)
+          // },
+          dataType: 'text'
+        });
+        }else{
+        	layer.msg("两次密码不匹配");
+        }
+        
+      } else {
+    	  layer.msg("验证码错误");
+      }
+
+
+    }
+  </script>
+</body>
+
+</html>

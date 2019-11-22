@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>电影资源网后台</title>
+	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/tooplate.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+
+<body id="login">
+    <div class="container">
+        <div class="row tm-register-row tm-mb-35">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-l">
+                <form action="" method="post" class="tm-bg-black p-5 h-100">
+                    <div class="input-field">
+                        <input placeholder="Username" id="username" name="username" type="text" class="validate">
+                    </div>
+                    <div class="input-field mb-5">
+                        <input placeholder="Password" id="password" name="password" type="password" class="validate">
+                    </div>
+                    <div class="tm-flex-lr">
+                    <a> </a>
+                        <button type="button" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0" onclick="send()">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-r">
+                <header class="font-weight-light tm-bg-black p-5 h-100">
+                    <h3 class="mt-0 text-white font-weight-light">Your Login</h3>
+                    <p>登录电影资源网以获取最新电影资讯</p>
+                    <p class="mb-0">Log in to the movie resource to get the latest movie information.</p>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ml-auto mr-0 text-center">
+                
+            </div>
+        </div>
+        <footer class="row tm-mt-big mb-3">
+            <div class="col-xl-12 text-center">
+               
+            </div>
+        </footer>
+    </div>
+    <script src="layui/layui.all.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+        function send() {
+			let p1 = $('#username').val();
+			let p2 = $('#password').val();
+			//2、通过ajax向服务器发送请求
+			$.ajax({
+				method: 'post',
+				url: 'Login',
+				data: {
+					'name': p1,
+					'pass': p2
+				},
+				success: function (data) {
+					if (data > 0) {
+						//更新成功
+						//成功后重新加载表格中的数据
+						location.href = 'mg.html';
+					} else {
+						layer.msg('用户名或密码错误!');
+					}
+				},
+				dataType: 'text'
+			});
+
+		}
+    </script>
+</body>
+
+</html>
